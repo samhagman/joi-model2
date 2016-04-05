@@ -1,0 +1,26 @@
+{
+  "name": "joi-model2",
+  "version": "1.0.0",
+  "description": "Create data models that are automatically validated by Joi schema rules.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samhagman/joi-model2.git"
+  },
+  "keywords": [
+    "joi",
+    "model",
+    "joi-model",
+    "schema",
+    "validator"
+  ],
+  "author": "Sam Hagman (https://www.samhagman.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samhagman/joi-model2/issues"
+  },
+  "homepage": "https://github.com/samhagman/joi-model2#readme"
+}
