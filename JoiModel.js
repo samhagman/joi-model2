@@ -42,8 +42,9 @@ function createJoiModel(schema, defaults) {
     // TODO make real random UUIDs
     const modelUUID = '12345';
     let JoiModel = {
-        _UUID: modelUUID,
-        _shadowObj: shadowObj
+        _UUID:      modelUUID,
+        _shadowObj: shadowObj,
+        _data:       {}
     };
 
     // Create an object to store cached values
@@ -58,29 +59,29 @@ function createJoiModel(schema, defaults) {
         Object.defineProperty(JoiModel, key, {
             enumerable: true,
             get() {
-                return this[key];
+                return this._data[ key ];
             },
             set(val) {
                 const _this = this;
                 const hash = hashAString(JSON.stringify(val));
 
                 // If this value has already been validated for this key before, then just set the value
-                if (validatedValues[ modelUUID ][hash]) {
-                    return _this[ key ] = val;
+                if (validatedValues[ modelUUID ][ hash ]) {
+                    return _this._data[ key ] = val;
                 }
 
                 // Do the validation against the shadow object
-                const oldVal = _this[key];
-                JoiModel._shadowObj[key] = val;
-                const validation = Joi.validate(schema, JoiModel._shadowObj);
+                const oldVal = _this._data[ key ];
+                _this._shadowObj[ key ] = val;
+                const validation = Joi.validate(_this._shadowObj, schema);
                 if (validation.error) {
-                    JoiModel._shadowObj[ key ] = oldVal;
+                    _this._shadowObj[ key ] = oldVal;
                     throw new Error('Attempted to change a property to an invalid value: \n' + validation.error);
                 }
                 else {
                     // Cache the validated value
-                    validatedValues[ modelUUID ][hash] = true;
-                    return _this[ key ] = val;
+                    validatedValues[ modelUUID ][ hash ] = true;
+                    return _this._data[ key ] = val;
 
                 }
             }
