@@ -29,9 +29,11 @@ function createJoiModel(schema, defaults) {
     }
 
     // Check if default object is valid itself
-    const validation = Joi.validate(schema, defaults);
-    if (validation.error) {
-        throw new Error('JoiModel default values do not validate against given schema \n' + validation.error);
+    if (defaults) {
+        const validation = Joi.validate(schema, defaults);
+        if (validation.error) {
+            throw new Error('JoiModel default values do not validate against given schema \n' + validation.error);
+        }
     }
 
     // Create a shadow object that
