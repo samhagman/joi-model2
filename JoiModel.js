@@ -21,6 +21,11 @@ const schema = Joi.object().keys({
 // Cache of validated values for each model
 const validatedValues = {};
 
+// TODO finish adding validation options
+const JOI_VALIDATION_OPTIONS = {
+    convert: false
+};
+
 function createJoiModel(schema, defaults) {
 
     // Check if schema is a Joi schema
