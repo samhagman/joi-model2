@@ -49,9 +49,12 @@ function createJoiModel(schema, defaults) {
     // Create an object to store cached values
     validatedValues[ modelUUID ] = {};
 
-    const keys = Object.keys(schema.children);
+    const childrenSchemas = schema._inner.children;
 
-    for (let key of keys) {
+    for (let childSchema of childrenSchemas) {
+
+        const key = childSchema.key;
+
         Object.defineProperty(JoiModel, key, {
             enumerable: true,
             get() {
