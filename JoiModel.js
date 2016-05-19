@@ -21,7 +21,7 @@ const schema = Joi.object().keys({
 // Cache of validated values for each model
 const validatedValues = {};
 
-export default function JoiModelFactory(schema, defaults) {
+function createJoiModel(schema, defaults) {
 
     // Check if schema is a Joi schema
     if (!schema.isJoi && !(schema._type === 'object')) {
@@ -89,3 +89,5 @@ export default function JoiModelFactory(schema, defaults) {
 
     return JoiModel;
 }
+
+export default createJoiModel;
