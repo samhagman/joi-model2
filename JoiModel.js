@@ -54,7 +54,6 @@ function createJoiModel(schema, defaults) {
     for (let key of keys) {
         Object.defineProperty(JoiModel, key, {
             enumerable: true,
-            writable: true,
             get() {
                 return this[key];
             },
