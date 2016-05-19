@@ -18,12 +18,6 @@ const schema = Joi.object().keys({
     })
 });
 
-
-console.log(util.inspect(schema, { depth: 8, colors: true }));
-console.log(util.inspect('1') === '1');
-
-const schemas = new WeakMap();
-
 // Cache of validated values for each model
 const validatedValues = {};
 
@@ -89,7 +83,6 @@ export default function JoiModelFactory(schema, defaults) {
         });
     }
 
-    // TODO make toJSON function
     JoiModel.toJSON = function() {
 
     };
