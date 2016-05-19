@@ -99,6 +99,10 @@ function createJoiModel(schema, defaults) {
     JoiModel.inspect = function() {
         return this._shadowObj;
     };
+
+    // Stops the addition of new properties
+    Object.preventExtensions(JoiModel);
+
     return JoiModel;
 }
 
