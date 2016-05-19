@@ -37,7 +37,7 @@ function createJoiModel(schema, defaults) {
     }
 
     // Create a shadow object that
-    const shadowObj = _.cloneDeep(defaults);
+    const shadowObj = _.cloneDeep(defaults || {});
 
     // TODO make real random UUIDs
     const modelUUID = '12345';
