@@ -89,9 +89,16 @@ function createJoiModel(schema, defaults) {
     }
 
     JoiModel.toJSON = function() {
-
+        return this._shadowObj;
     };
 
+    JoiModel.toString = function() {
+        return this._shadowObj + '';
+    };
+
+    JoiModel.inspect = function() {
+        return this._shadowObj;
+    };
     return JoiModel;
 }
 
